@@ -1,17 +1,14 @@
 <?php
-session_start();
 require_once '../config/db.php';
 
 $error = '';
-$success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
-    $email    = trim($_POST['email']);
+    $email = trim($_POST['email']);
     $password = $_POST['password'];
-    $confirm  = $_POST['confirm_password'];
+    $confirm = $_POST['confirm_password'];
 
-    // Basic validation
     if (empty($username) || empty($email) || empty($password)) {
         $error = "All fields are required.";
     } elseif ($password !== $confirm) {
@@ -19,26 +16,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strlen($password) < 6) {
         $error = "Password must be at least 6 characters.";
     } else {
-        // Check if username or email already exists
         $stmt = $pdo->prepare("SELECT id FROM user WHERE username = ? OR email = ?");
         $stmt->execute([$username, $email]);
 
         if ($stmt->rowCount() > 0) {
             $error = "Username or email already taken.";
         } else {
-            // Hash the password
             $hashed = password_hash($password, PASSWORD_DEFAULT);
-
-            // Insert into database
             $stmt = $pdo->prepare("INSERT INTO user (username, email, password) VALUES (?, ?, ?)");
             $stmt->execute([$username, $email, $hashed]);
-
-            $success = "Registration successful! You can now log in.";
+            header("Location: login.php?registered=1");
+            exit();
         }
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,10 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?php if ($error): ?>
             <p class="error"><?php echo htmlspecialchars($error); ?></p>
-        <?php endif; ?>
-
-        <?php if ($success): ?>
-            <p class="success"><?php echo htmlspecialchars($success); ?></p>
         <?php endif; ?>
 
         <form method="POST" action="">

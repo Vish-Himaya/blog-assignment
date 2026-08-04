@@ -3,6 +3,11 @@ session_start();
 require_once '../config/db.php';
 
 $error = '';
+$success = '';
+
+if (isset($_GET['registered'])) {
+    $success = "Registration successful! Please log in.";
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
@@ -11,18 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username) || empty($password)) {
         $error = "All fields are required.";
     } else {
-        // Find user by username
         $stmt = $pdo->prepare("SELECT * FROM user WHERE username = ?");
         $stmt->execute([$username]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            // Password is correct - set session variables
             $_SESSION['user_id']  = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role']     = $user['role'];
 
-            // Redirect to home page
             header("Location: ../index.php");
             exit();
         } else {
@@ -43,6 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="form-container">
         <h2>Login</h2>
+
+        <?php if ($success): ?>
+            <p class="success"><?php echo htmlspecialchars($success); ?></p>
+        <?php endif; ?>
 
         <?php if ($error): ?>
             <p class="error"><?php echo htmlspecialchars($error); ?></p>

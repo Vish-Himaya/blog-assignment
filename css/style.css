@@ -1,0 +1,243 @@
+/* ── Reset & Base ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f6fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    color: #4a90d9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ── Navbar ── */
+nav {
+    background: #fff;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    color: #333;
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #4a90d9;
+    text-decoration: none;
+}
+
+nav strong {
+    font-size: 22px;
+    color: #4a90d9;
+}
+
+/* ── Container ── */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ── Form Container (login/register) ── */
+.form-container {
+    max-width: 450px;
+    margin: 80px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* ── Form Elements ── */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #4a90d9;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 200px;
+}
+
+/* ── Buttons ── */
+button[type="submit"] {
+    background: #4a90d9;
+    color: #fff;
+    border: none;
+    padding: 11px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: #357abd;
+}
+
+.btn-cancel {
+    margin-left: 15px;
+    color: #888;
+    font-size: 14px;
+}
+
+.btn-edit {
+    background: #f0a500;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.btn-edit:hover {
+    background: #d4900a;
+    text-decoration: none;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+    text-decoration: none;
+}
+
+/* ── Post Card (home page) ── */
+.post-card {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+}
+
+.post-card h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.post-card h2 a {
+    color: #333;
+}
+
+.post-card h2 a:hover {
+    color: #4a90d9;
+    text-decoration: none;
+}
+
+/* ── Single Post View ── */
+.post-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.post-actions {
+    margin: 20px 0;
+}
+
+/* ── Meta (author/date) ── */
+.meta {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* ── Messages ── */
+.error {
+    background: #fde8e8;
+    color: #c0392b;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.success {
+    background: #e8f8e8;
+    color: #27ae60;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    nav {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-container {
+        margin: 40px 15px;
+        padding: 25px;
+    }
+
+    .container {
+        margin: 20px auto;
+    }
+}
